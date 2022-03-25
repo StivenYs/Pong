@@ -31,11 +31,26 @@ public class ObjectMove : MonoBehaviour
 
         for (int i = 0; i < positions.Length; i++)
         {
-            Gizmos.DrawWireSphere(came.WorldToScreenPoint(positions[i]),Radius);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(came.ScreenToWorldPoint(positions[i]),Radius);
             Gizmos.color = Color.blue;
+            if (i > 0)
+            {
+                Gizmos.DrawLine(came.ScreenToWorldPoint(positions[i]), came.ScreenToWorldPoint(positions[i - 1]));
+            }
+            else
+            {
+                Gizmos.DrawLine(came.ScreenToWorldPoint(positions[i]), came.ScreenToWorldPoint(positions[positions.Length - 1]));
+            }
         }
 
-      
+        
+        
+            
+            
+            
+        
+
 
     }
   
