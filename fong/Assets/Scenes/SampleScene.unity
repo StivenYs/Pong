@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 48597271}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141157a5072b16c41a798a6271c87a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerSpeed: 20
+  m_playerSpeed: 10
 --- !u!65 &48597272
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -226,7 +226,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 48597270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12, y: -0.5, z: 0}
+  m_LocalPosition: {x: -13.58, y: -0.5, z: 0}
   m_LocalScale: {x: 0.2875, y: 2.3378923, z: 0.49196476}
   m_Children: []
   m_Father: {fileID: 0}
@@ -262,10 +262,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   came: {fileID: 963194227}
-  ariQui: {x: -16.659332, y: 4.0497165, z: -1.1999998}
-  ariDere: {x: 16.682945, y: 4.0497165, z: -1.1999998}
-  AbajIzq: {x: -16.659332, y: -5.773503, z: -1.1999998}
-  AbajoDere: {x: 16.682945, y: -5.773503, z: -1.1999998}
+  ariQui: {x: -15.117774, y: 4.379015, z: -1.2000122}
+  ariDere: {x: 15.139188, y: 4.379015, z: -1.2000122}
+  AbajIzq: {x: -15.117774, y: -5, z: -1.2000122}
+  AbajoDere: {x: 15.139188, y: -5, z: -1.2000122}
   Dis: 10
 --- !u!4 &106745607
 Transform:
@@ -387,6 +387,7 @@ GameObject:
   - component: {fileID: 867354580}
   - component: {fileID: 867354579}
   - component: {fileID: 867354583}
+  - component: {fileID: 867354584}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -402,7 +403,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867354578}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -483,7 +484,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  Instance: {fileID: 106745606}
+--- !u!54 &867354584
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867354578}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +552,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:

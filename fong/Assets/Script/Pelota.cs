@@ -7,7 +7,6 @@ public class Pelota : MonoBehaviour
     public float speed;
     private float  moveX, MoveY;
 
-    public GameManager Instance;
 
     void Start()
     {
@@ -27,32 +26,39 @@ public class Pelota : MonoBehaviour
     }
     void limitesPelotas()
     {
-        float disx1 = Instance.ariDere.x;
+        float disx1 = GameManager.Instance.ariDere.x;
 
-        if (transform.position.x >= disx1)
+        if (transform.position.x >= disx1 && moveX > 0)
         {
             moveX *= -1;
         }
 
-        float disX2 = Instance.ariQui.x;
-        if (transform.position.x < disX2)
+        float disX2 = GameManager.Instance.ariQui.x;
+        if (transform.position.x < disX2 && moveX < 0)
         {
             moveX *= -1;
         }
 
-        float DisY1 = Instance.ariQui.y;
-        if (transform.position.y >= DisY1)
+        float DisY1 = GameManager.Instance.ariQui.y;
+        if (transform.position.y >= DisY1 && MoveY > 0)
         {
             MoveY *= -1;
         }
 
-        float disY2 = Instance.AbajoDere.y;
-        if (transform.position.y <= disY2)
+        float disY2 = GameManager.Instance.AbajoDere.y;
+        if (transform.position.y <= disY2 && MoveY < 0)
         {
             MoveY *= -1;
         }
 
 
     }
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            moveX *= -1;
+        }
+    }
+
 }

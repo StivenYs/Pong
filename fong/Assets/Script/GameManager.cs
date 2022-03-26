@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    
+    public static GameManager Instance;
     
     public Camera came;
 
@@ -18,9 +18,10 @@ public class GameManager : MonoBehaviour
 
 
 
+
     private void Awake()
     {
-       /* if (Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -28,13 +29,14 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-       */
+       
     }
 
     private void Update()
     {
-        
+        UbicarLimites();
     }
+
 
     void UbicarLimites()
     {
@@ -54,7 +56,7 @@ public class GameManager : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        UbicarLimites();
+        //UbicarLimites();
 
         Gizmos.color = Color.green;
 
