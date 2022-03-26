@@ -20,10 +20,11 @@ public class ObjectMove : MonoBehaviour
 
         Vector3[] positions = {
 
-            new Vector3(Screen.width, Screen.height, positionZ),
-            new Vector3(0,0,positionZ),
             new Vector3(Screen.width,0,positionZ),
-            new Vector3(0,Screen.height,positionZ)
+            new Vector3(Screen.width, Screen.height, positionZ),
+            new Vector3(0,Screen.height,positionZ),
+            new Vector3(0,0,positionZ),       
+            
             
             
 
@@ -33,7 +34,10 @@ public class ObjectMove : MonoBehaviour
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(came.ScreenToWorldPoint(positions[i]),Radius);
+
+
             Gizmos.color = Color.blue;
+
             if (i > 0)
             {
                 Gizmos.DrawLine(came.ScreenToWorldPoint(positions[i]), came.ScreenToWorldPoint(positions[i - 1]));
