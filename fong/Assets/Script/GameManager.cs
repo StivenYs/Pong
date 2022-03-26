@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    
     
     public Camera came;
 
 
-    Vector3 ariQui;
-    Vector3 ariDere;
-    Vector3 AbajIzq;
-    Vector3 AbajoDere;
+    [HideInInspector] public Vector3 ariQui;
+    [HideInInspector] public Vector3 ariDere;
+    [HideInInspector] public Vector3 AbajIzq;
+    [HideInInspector] public Vector3 AbajoDere;
 
     public float Dis;
 
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+       /* if (Instance == null)
         {
             Instance = this;
         }
@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+       */
     }
 
     private void Update()
