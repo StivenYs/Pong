@@ -29,12 +29,14 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-       
+
+        UbicarLimites();
+
     }
 
     private void Update()
     {
-        UbicarLimites();
+        
     }
 
 
