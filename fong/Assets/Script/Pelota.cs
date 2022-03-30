@@ -8,12 +8,11 @@ public class Pelota : MonoBehaviour
     private float  moveX, MoveY;
     float Tim;
     float Predi;
-
+   
     void Start()
     {
         moveX = Random.Range(0.1f, 1);
         MoveY = Random.Range(0.1f, 1);
-        //transform.position += new Vector3(Random.Range())
 
         Distancia();
     } 
@@ -40,6 +39,7 @@ public class Pelota : MonoBehaviour
     {
         transform.position += new Vector3(moveX, MoveY) * speed * Time.deltaTime;
     }
+
     void limitesPelotas()
     {
         float disx1 = GameManager.Instance.ariDere.x;
@@ -84,14 +84,15 @@ public class Pelota : MonoBehaviour
     private void Distancia()
     {
 
-        float Dis = transform.position.x - GameManager.Instance.ariDere.x;
+        float Dis = transform.position.x - GameManager.Instance.ariDere.x ;
 
-        Predi = Dis / speed;
+
+        Predi = Dis / (speed * moveX);
 
         Predi = Mathf.Abs(Predi);
 
 
-
+        
 
 
     }
