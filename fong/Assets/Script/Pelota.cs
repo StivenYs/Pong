@@ -5,54 +5,88 @@ using UnityEngine;
 public class Pelota : MonoBehaviour
 {
     public float speed;
-    private float  moveX, MoveY;
+
     float Tim;
     float Predi;
-   
+    public float moveX, MoveY;
+
+    private bool nuevoRaud;
+
     void Start()
     {
-        moveX = Random.Range(0.1f, 1);
-        MoveY = Random.Range(0.1f, 1);
-
+        nuevoRaud = false;
+        RandomInicial();
         Distancia();
-    } 
+    }
     void Update()
     {
         limitesPelotas();
-        
 
-        if (Tim >= Predi)
-        {
-            return;
-        }
 
-        Tim += Time.deltaTime;
+        /* if (Tim >= Predi)
+         {
+             //return;
 
+         }
+        */
+
+
+        tiempo();
         MoverPelota();
 
+        
 
 
+    }
+    private void RandomInicial()
+    {
+        moveX = Random.Range(0.1f, 1);
+        MoveY = Random.Range(0.1f, 1);
 
     }
 
     void MoverPelota()
     {
-        transform.position += new Vector3(moveX, MoveY) * speed * Time.deltaTime;
+        if (nuevoRaud == false)
+        {
+            transform.Translate(new Vector3(moveX, MoveY) * speed * Time.deltaTime);
+
+        }
+
     }
 
     void limitesPelotas()
     {
+
+
         float disx1 = GameManager.Instance.ariDere.x;
 
         if (transform.position.x >= disx1 && moveX > 0)
         {
-            moveX *= -1;
+            //moveX *= -1;
+            GameManager.Instance.PuntosJugadores(1);
+            nuevoRaud = true;
+            
+            moveX = Random.Range(-1, -1.0f);
+            MoveY = Random.Range(0.1f, 1);
+
+            
+
         }
 
         float disX2 = GameManager.Instance.ariQui.x;
         if (transform.position.x < disX2 && moveX < 0)
         {
-            moveX *= -1;
+            // moveX *= -1;
+
+            GameManager.Instance.PuntosJugadores(2);
+            nuevoRaud = true;
+            
+            
+            moveX = Random.Range(0.1f, 1);
+            MoveY = Random.Range(0.1f, 1);
+
+            
         }
 
         float DisY1 = GameManager.Instance.ariQui.y;
@@ -66,6 +100,8 @@ public class Pelota : MonoBehaviour
         {
             MoveY *= -1;
         }
+
+
 
         //tiempo 
 
@@ -84,7 +120,7 @@ public class Pelota : MonoBehaviour
     private void Distancia()
     {
 
-        float Dis = transform.position.x - GameManager.Instance.ariDere.x ;
+        float Dis = transform.position.x - GameManager.Instance.ariDere.x;
 
 
         Predi = Dis / (speed * moveX);
@@ -92,9 +128,30 @@ public class Pelota : MonoBehaviour
         Predi = Mathf.Abs(Predi);
 
 
-        
+
 
 
     }
-   
+    private void tiempo()
+    {
+        print(nuevoRaud);
+
+        if (nuevoRaud)
+        {
+            if (Tim >GameManager.Instance.Tiempo && nuevoRaud == true)
+            {
+                nuevoRaud = false;               
+            }
+
+            Tim += Time.deltaTime;
+        }
+        else
+        {
+            Tim = 0;
+        }
+       
+        
+
+    }
+    
 }

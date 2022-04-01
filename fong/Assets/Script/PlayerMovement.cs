@@ -25,21 +25,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        
-        Offset = transform.localScale.y / 2f;
-
-        VectorMovimiento.y = Input.GetAxisRaw("Vertical");
-
-        if (transform.position.y + Offset >= GameManager.Instance.ariDere.y && Input.GetAxisRaw("Vertical") > 0)
-        {
-            VectorMovimiento.y = 0;
-        }
-        if (transform.position.y - Offset<= GameManager.Instance.AbajIzq.y && Input.GetAxisRaw("Vertical") <0)
-        {
-            VectorMovimiento.y = 0;
-        }
-
-        transform.Translate( new Vector2(0,VectorMovimiento.y * m_playerSpeed * Time.deltaTime));
+       
 
     }
 
@@ -54,6 +40,26 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector3(GameManager.Instance.ariDere.x - DistanceDe, 0,0);
         }
        
+    }
+    public void MoviJugador( int NuJugador)
+    {
+
+        Offset = transform.localScale.y / 2f;
+
+
+
+        VectorMovimiento.y = NuJugador;
+
+        if (transform.position.y + Offset >= GameManager.Instance.ariDere.y && VectorMovimiento.y > 0)
+        {
+            VectorMovimiento.y = 0;
+        }
+        if (transform.position.y - Offset <= GameManager.Instance.AbajIzq.y && VectorMovimiento.y < 0)
+        {
+            VectorMovimiento.y = 0;
+        }
+
+        transform.Translate(new Vector2(0, VectorMovimiento.y * m_playerSpeed * Time.deltaTime));
     }
 
     

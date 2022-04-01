@@ -16,8 +16,12 @@ public class GameManager : MonoBehaviour
 
     public float Dis;
 
+    
+    public GameObject Pelota;
 
-
+    //Direccion Para Donde va la pelota
+     
+    public int Tiempo = 5;
 
     private void Awake()
     {
@@ -70,5 +74,38 @@ public class GameManager : MonoBehaviour
 
 
     }
+
+
+    //Contador de Puntajes de Jugadores
+
+    [HideInInspector]
+    public int PuntajeJugador1;
+    [HideInInspector]
+    public int PuntajeJugador2;
+
+
+    public void PuntosJugadores(int JugadorQueAnoto)
+    {
+        if (JugadorQueAnoto == 1)
+        {
+            PuntajeJugador1 += 1;
+            RaroundNext(1);
+            
+        }
+        if (JugadorQueAnoto == 2)
+        {
+            PuntajeJugador2 += 1;
+            RaroundNext(2);
+        }
+    }
+
+    float dirX = 1;
+    private void RaroundNext(int Ganador)
+    {
+        Pelota.transform.position = new Vector2(0, 0);
+        Pelota.GetComponent<Pelota>().moveX *= -1;
+   
+    }
+
 
 }
