@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            m_playerMovement.MoviJugador((int)Input.GetAxisRaw("Vertical2"));
+            m_playerMovement.MoviJugador((int)Input.GetAxisRaw("Vertical2q"));
         }
     }
 }
