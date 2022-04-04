@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private bool JugadorIzq;
 
+   
+
     private void Start()
     {
         LugarPo();
@@ -43,23 +45,28 @@ public class PlayerMovement : MonoBehaviour
     }
     public void MoviJugador( int NuJugador)
     {
+        
 
-        Offset = transform.localScale.y / 2f;
+        
+            Offset = transform.localScale.y / 2f;
 
 
 
-        VectorMovimiento.y = NuJugador;
+            VectorMovimiento.y = NuJugador;
 
-        if (transform.position.y + Offset >= GameManager.Instance.ariDere.y && VectorMovimiento.y > 0)
-        {
-            VectorMovimiento.y = 0;
-        }
-        if (transform.position.y - Offset <= GameManager.Instance.AbajIzq.y && VectorMovimiento.y < 0)
-        {
-            VectorMovimiento.y = 0;
-        }
+            if (transform.position.y + Offset >= GameManager.Instance.ariDere.y && VectorMovimiento.y > 0)
+            {
+                VectorMovimiento.y = 0;
+            }
+            if (transform.position.y - Offset <= GameManager.Instance.AbajIzq.y && VectorMovimiento.y < 0)
+            {
+                VectorMovimiento.y = 0;
+            }
 
-        transform.Translate(new Vector2(0, VectorMovimiento.y * m_playerSpeed * Time.deltaTime));
+            transform.Translate(new Vector2(0, VectorMovimiento.y * m_playerSpeed * Time.deltaTime));
+        
+       
+
     }
 
     

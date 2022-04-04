@@ -12,14 +12,31 @@ public class Pelota : MonoBehaviour
 
     private bool nuevoRaud;
 
+
+
+
+
     void Start()
     {
         nuevoRaud = false;
         RandomInicial();
         Distancia();
+        renderBolita.GetComponent<Renderer>();
+
     }
     void Update()
     {
+       
+
+
+
+        if (GameManager.isPause)
+        {
+            return;
+        }
+
+        PowerUp();
+
         limitesPelotas();
 
 
@@ -34,14 +51,14 @@ public class Pelota : MonoBehaviour
         tiempo();
         MoverPelota();
 
-        
+
 
 
     }
     private void RandomInicial()
     {
         moveX = Random.Range(0.1f, 1);
-        MoveY = Random.Range(0.1f, 1);
+        MoveY = 1;//Random.Range(0.1f, 1);
 
     }
 
@@ -66,11 +83,11 @@ public class Pelota : MonoBehaviour
             //moveX *= -1;
             GameManager.Instance.PuntosJugadores(1);
             nuevoRaud = true;
-            
+
             moveX = Random.Range(-1, -1.0f);
             MoveY = Random.Range(0.1f, 1);
+            speed = 15;
 
-            
 
         }
 
@@ -81,12 +98,13 @@ public class Pelota : MonoBehaviour
 
             GameManager.Instance.PuntosJugadores(2);
             nuevoRaud = true;
-            
-            
+
+
             moveX = Random.Range(0.1f, 1);
             MoveY = Random.Range(0.1f, 1);
+            speed = 15;
 
-            
+
         }
 
         float DisY1 = GameManager.Instance.ariQui.y;
@@ -114,6 +132,7 @@ public class Pelota : MonoBehaviour
         if (other.tag == "Player")
         {
             moveX *= -1;
+            speed += 1;
         }
     }
 
@@ -134,13 +153,13 @@ public class Pelota : MonoBehaviour
     }
     private void tiempo()
     {
-        print(nuevoRaud);
+        
 
         if (nuevoRaud)
         {
-            if (Tim >GameManager.Instance.Tiempo && nuevoRaud == true)
+            if (Tim > GameManager.Instance.Tiempo && nuevoRaud == true)
             {
-                nuevoRaud = false;               
+                nuevoRaud = false;
             }
 
             Tim += Time.deltaTime;
@@ -149,9 +168,79 @@ public class Pelota : MonoBehaviour
         {
             Tim = 0;
         }
-       
-        
+
+
 
     }
-    
+
+    //variables de el power up solo estaran disponibles Player vs Player
+
+    public Renderer renderBolita;
+
+    float TIn = 0;
+    float Tem = 0;
+    float isPowe = 0;
+    float FalPowe = 0;
+    float StarPo = 0;
+    private void PowerUp()
+    {
+        if (GameManager.Instance.PowerUp)
+        {
+            StarPo = 0;
+
+            if (isPowe > 3)
+            {
+                renderBolita.enabled = false;
+
+                if (FalPowe > 0.6f)
+                {
+                    GameManager.Instance.PowerUp = false;
+                }
+                FalPowe += Time.deltaTime;
+            }
+            else
+            {
+               if (TIn > 0.2f)
+                {
+                    renderBolita.material.color = Color.red;
+                    TIn = 0;
+                }
+                else if (Tem > 0.3)
+                {
+                    renderBolita.material.color = Color.green;
+                    Tem = 0;
+                }
+
+                TIn += Time.deltaTime;
+                Tem += Time.deltaTime;
+                isPowe += Time.deltaTime;
+
+            }
+           
+
+
+        }
+        else 
+        {    
+            Tem = 0;
+            TIn = 0;
+            renderBolita.enabled = true;
+            FalPowe = 0;
+            isPowe = 0;
+
+
+            if (StarPo > 4)
+            {
+                GameManager.Instance.PowerUp = true;
+            }
+
+            StarPo += Time.deltaTime;
+        }
+
+
+
+
+
+    }
+
 }

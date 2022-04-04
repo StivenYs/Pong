@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     
     public Camera came;
 
+    
 
     [HideInInspector] public Vector3 ariQui;
     [HideInInspector] public Vector3 ariDere;
@@ -23,6 +24,19 @@ public class GameManager : MonoBehaviour
      
     public int Tiempo = 5;
 
+    [HideInInspector]
+    public static bool isPause = true;
+    
+    public bool isBot;
+
+    //power up
+    [HideInInspector]
+
+    public bool PowerUp = false;
+
+
+    public GameObject Menu;
+
     private void Awake()
     {
         if (Instance == null)
@@ -36,11 +50,13 @@ public class GameManager : MonoBehaviour
 
         UbicarLimites();
 
+
+
     }
 
     private void Update()
     {
-        
+       
     }
 
 
@@ -58,7 +74,7 @@ public class GameManager : MonoBehaviour
         Vector3 vector4t = new Vector3(Screen.width,Screen.height, Dis);
         ariDere = came.ScreenToWorldPoint(vector4t);
 
-
+        
     }
     private void OnDrawGizmos()
     {
@@ -86,17 +102,25 @@ public class GameManager : MonoBehaviour
 
     public void PuntosJugadores(int JugadorQueAnoto)
     {
-        if (JugadorQueAnoto == 1)
+        if (PuntajeJugador1 >= 5 || PuntajeJugador2 >= 5)
+        {
+            Menu.SetActive(true);
+            isPause = true;
+            PuntajeJugador2 = 0;
+            PuntajeJugador1 = 0;
+        }
+        else if (JugadorQueAnoto == 1)
         {
             PuntajeJugador1 += 1;
             RaroundNext(1);
             
         }
-        if (JugadorQueAnoto == 2)
+        else if (JugadorQueAnoto == 2)
         {
             PuntajeJugador2 += 1;
             RaroundNext(2);
         }
+
     }
 
     float dirX = 1;

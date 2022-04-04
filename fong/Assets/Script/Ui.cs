@@ -18,4 +18,22 @@ public class Ui : MonoBehaviour
 
 
     }
+
+    public void starGameVsIA()
+    {
+        GameManager.Instance.isBot = true;
+        GameManager.isPause = false;
+       
+    }
+    public void VsPlayer()
+    {
+        GameManager.Instance.isBot = false;
+        GameManager.isPause = false;
+        
+    }
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
 }

@@ -18,6 +18,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.isPause)
+        {
+            return;
+        }
+
         Controlador();
     }
     private void Controlador()
@@ -28,7 +33,11 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            m_playerMovement.MoviJugador((int)Input.GetAxisRaw("Vertical2q"));
+            if (GameManager.Instance.isBot == false)
+            {
+                m_playerMovement.MoviJugador((int)Input.GetAxisRaw("Vertical2"));
+            }
+           
         }
     }
 }
